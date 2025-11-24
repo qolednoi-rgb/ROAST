@@ -1,47 +1,44 @@
 // app/layout.tsx
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 
-// Optional: Use a clean system font stack or a custom local font
-const geist = localFont({
-  src: [
-    {
-      path: "../public/fonts/Geist-Regular.woff2",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/Geist-Medium.woff2",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/Geist-Bold.woff2",
-      weight: "700",
-      style: "normal",
-    },
-  ],
-  variable: "--font-geist",
-  display: "swap",
-});
-
 export const metadata: Metadata = {
+  metadataBase: new URL("https://roastmyscreenshot.com"),
   title: {
-    default: "My App",
-    template: "%s | My App",
+    default: "RoastMyScreenshot 🔥 Get Destroyed by AI",
+    template: "%s | RoastMyScreenshot",
   },
-  description: "A modern Next.js app built with the App Router",
-  keywords: ["next.js", "react", "typescript"],
+  description: "Upload any screenshot. Get emotionally damaged for free.",
+  keywords: ["roast", "screenshot", "ai", "funny", "meme"],
+  authors: [{ name: "qolednoi-rgb" }],
+  creator: "qolednoi-rgb",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://yourdomain.com",
-    siteName: "My App",
+    url: "https://roastmyscreenshot.com",
+    siteName: "RoastMyScreenshot",
+    title: "RoastMyScreenshot 🔥",
+    description: "Upload anything. Get emotionally damaged for free.",
+    images: [
+      {
+        url: "/og-preview.jpg", // ← create this 1200×630 image later, for now it 404s gracefully
+        width: 1200,
+        height: 630,
+        alt: "RoastMyScreenshot preview",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    site: "@yourhandle",
+    site: "@yourhandle", // ← change to your real X handle
+    creator: "@yourhandle",
+    title: "RoastMyScreenshot 🔥",
+    description: "I let an AI roast my screenshot and I regret everything",
+    images: ["/og-preview.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -51,13 +48,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={geist.variable}>
+    <html lang="en">
       <head>
-        {/* Common favicons (add your own files) */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <meta name="theme-color" content="#000000" />
       </head>
-      <body className={`${geist.className} antialiased`}>
+      <body className="antialiased bg-black text-white min-h-screen">
         {children}
       </body>
     </html>
